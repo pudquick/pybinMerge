@@ -41,7 +41,7 @@ def backwards_merge(infile, newfile, sksize=512, psize=256):
                 buffer_copy(newfile,infile)
                 print "STATUS: Merge complete"
                 return
-    print "ERROR: No merge point found using %s skip bytes and %s print bytes" % (sksize, psize)
+    print "ERROR: No merge point found using %s skip bytes and %s merge bytes" % (sksize, psize)
     sys.exit(1)
 
 def main():
@@ -81,6 +81,7 @@ configured with the skip option."
         backwards_merge(outfile, nfile, options.skipbytes, options.mergebytes)
         nfile.close()
     outfile.close()
+    print "STATUS: Completed multi-file merge"
 
 if __name__ == "__main__":
     main()
