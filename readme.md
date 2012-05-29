@@ -15,7 +15,7 @@ Options:
   --version             show program's version number and exit
   -h, --help            show this help message and exit
   -o FILE, --output=FILE
-                        write combined output to FILE
+                        write combined output to FILE [default: output.data]
   -s NUM, --skip=NUM    skip this many bytes [default: 512]
-  -m NUM, --merge=NUM   use this many bytes for a match [default:256]
+  -m NUM, --merge=NUM   use this many bytes for a match [default: 256]
 ```

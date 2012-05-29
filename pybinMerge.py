@@ -54,11 +54,11 @@ configured with the skip option."
     parser = OptionParser(usage="usage: %prog [options] file1 file2 [...]",
         version="%prog 1.0", description=description)
     parser.add_option("-o", "--output", dest="outfile", type="string",
-        help="write combined output to FILE", metavar="FILE", default="output.data")
+        help="write combined output to FILE [default: output.data]", metavar="FILE", default="output.data")
     parser.add_option("-s", "--skip", dest="skipbytes", type="int",
         help="skip this many bytes [default: 512]", metavar="NUM", default=512)
     parser.add_option("-m", "--merge", dest="mergebytes", type="int",
-        help="use this many bytes for a match [default:256]", metavar="NUM", default=256)
+        help="use this many bytes for a match [default: 256]", metavar="NUM", default=256)
     (options, args) = parser.parse_args()
     if (len(args) < 2):
         return parser.print_help()
