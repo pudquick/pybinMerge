@@ -47,10 +47,10 @@ def backwards_merge(infile, newfile, sksize=512, psize=256):
 def main():
     description = "%prog will combine a list of files passed to it, in order, and \
 create a new file with this data. It finds a common subset of bytes between neighboring \
-files in the list, the length of which can be configured with the skip option. It also \
+files in the list, the length of which can be configured with the merge option. It also \
 skips a minimum number of bytes at the beginning of each file, assuming there may be a \
 varying header there that would cause a bad merge. The number of bytes it skips can be \
-configured with the match option."
+configured with the skip option."
     parser = OptionParser(usage="usage: %prog [options] file1 file2 [...]",
         version="%prog 1.0", description=description)
     parser.add_option("-o", "--output", dest="outfile", type="string",
