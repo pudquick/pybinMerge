@@ -45,12 +45,19 @@ def backwards_merge(infile, newfile, sksize=512, psize=256):
     sys.exit(1)
 
 def main():
-    parser = OptionParser(usage="usage: %prog [options] file1 file2 [...]", version="%prog 1.0")
+    description = "%prog will combine a list of files passed to it, in order, and \
+create a new file with this data. It finds a common subset of bytes between neighboring \
+files in the list, the length of which can be configured with the skip option. It also \
+skips a minimum number of bytes at the beginning of each file, assuming there may be a \
+varying header there that would cause a bad merge. The number of bytes it skips can be \
+configured with the match option."
+    parser = OptionParser(usage="usage: %prog [options] file1 file2 [...]",
+        version="%prog 1.0", description=description)
     parser.add_option("-o", "--output", dest="outfile", type="string",
         help="write combined output to FILE", metavar="FILE", default="output.data")
     parser.add_option("-s", "--skip", dest="skipbytes", type="int",
         help="skip this many bytes [default: 512]", metavar="NUM", default=512)
-    parser.add_option("-p", "--print", dest="printbytes", type="int",
+    parser.add_option("-m", "--merge", dest="mergebytes", type="int",
         help="use this many bytes for a match [default:256]", metavar="NUM", default=256)
     (options, args) = parser.parse_args()
     if (len(args) < 2):
@@ -71,7 +78,7 @@ def main():
         nfile = open(nextfile, "rb")
         print "STATUS: Processing", nextfile, "..."
         # Now start searching, from the end of the outfile, for our thumbprint
-        backwards_merge(outfile, nfile, options.skipbytes, options.printbytes)
+        backwards_merge(outfile, nfile, options.skipbytes, options.mergebytes)
         nfile.close()
     outfile.close()
 
